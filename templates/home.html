@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Salary Prediction</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #141E30, #243B55);
+      color: #e6edf3;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(20, 27, 34, 0.95);
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      backdrop-filter: blur(6px);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #c9d1d9;
+    }
+
+    .form-control, .form-select {
+      background: #161b22;
+      border: 1px solid #30363d;
+      color: #f0f6fc;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 15px;
+      transition: all 0.25s ease;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: #00c6ff;
+      box-shadow: 0 0 8px rgba(0, 198, 255, 0.4);
+      outline: none;
+      transform: scale(1.01);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      border: none;
+      border-radius: 14px;
+      padding: 14px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 114, 255, 0.5);
+    }
+
+    .result-box {
+      margin-top: 30px;
+      padding: 28px;
+      background: rgba(15, 23, 30, 0.9);
+      border: 1px solid #30363d;
+      border-radius: 15px;
+      text-align: center;
+      animation: popUp 0.6s ease-in-out;
+    }
+
+    @keyframes popUp {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .result-box h3 {
+      font-weight: 700;
+      font-size: 26px;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .result-box p {
+      color: #9da5b4;
+      font-size: 15px;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Salary Prediction</h2>
+    <form action="/predictdata" method="POST">
+      
+      <!-- Country -->
+      <div class="mb-3">
+        <label for="country">Country</label>
+        <select class="form-select" id="country" name="country" required>
+          <option value="" disabled selected>Select your country</option>
+          <option>United States</option>
+          <option>India</option>
+          <option>United Kingdom</option>
+          <option>Germany</option>
+          <option>Canada</option>
+          <option>Australia</option>
+          <option>France</option>
+          <option>Japan</option>
+          <option>China</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <!-- Work Experience -->
+      <div class="mb-3">
+        <label for="workexp">Work Experience (Years)</label>
+        <input type="number" class="form-control" id="workexp" name="workexp" placeholder="e.g. 5" required>
+      </div>
+
+      <!-- Years of Coding -->
+      <div class="mb-3">
+        <label for="yearscode">Years of Coding</label>
+        <input type="number" class="form-control" id="yearscode" name="yearscode" placeholder="e.g. 3" required>
+      </div>
+
+      <!-- Education Level -->
+      <div class="mb-3">
+        <label for="edlevel">Education Level</label>
+        <select class="form-select" id="edlevel" name="edlevel" required>
+          <option value="" disabled selected>Select Education Level</option>
+          <option>Primary/elementary school</option>
+          <option>Secondary school</option>
+          <option>Some college/university study without earning a degree</option>
+          <option>Associate degree</option>
+          <option>Bachelor’s degree</option>
+          <option>Master’s degree</option>
+          <option>Professional degree (JD, MD, Ph.D, etc.)</option>
+        </select>
+      </div>
+
+      <!-- Developer Type -->
+      <div class="mb-3">
+        <label for="devtype">Developer Type</label>
+        <select class="form-select" id="devtype" name="devtype" required>
+          <option value="" disabled selected>Select Developer Type</option>
+          <option>AI/ML Engineer</option>
+          <option>Data Scientist</option>
+          <option>Full-stack Developer</option>
+          <option>Backend Developer</option>
+          <option>Frontend Developer</option>
+          <option>Mobile Developer</option>
+          <option>Cloud Engineer</option>
+          <option>Cybersecurity Specialist</option>
+        </select>
+      </div>
+
+      <!-- Organization Size -->
+      <div class="mb-3">
+        <label for="orgsize">Organization Size</label>
+        <select class="form-select" id="orgsize" name="orgsize" required>
+          <option value="" disabled selected>Select Organization Size</option>
+          <option>Freelancer / Solo</option>
+          <option>1 - 20 employees</option>
+          <option>21 - 100 employees</option>
+          <option>101 - 500 employees</option>
+          <option>501 - 1000 employees</option>
+          <option>1001 - 5000 employees</option>
+          <option>5000+ employees</option>
+        </select>
+      </div>
+
+      <!-- Industry -->
+      <div class="mb-3">
+        <label for="industry">Industry</label>
+        <select class="form-select" id="industry" name="industry" required>
+          <option value="" disabled selected>Select Industry</option>
+          <option>Software Development</option>
+          <option>Finance / Banking</option>
+          <option>Healthcare</option>
+          <option>Education</option>
+          <option>Government</option>
+          <option>Telecom</option>
+          <option>Manufacturing</option>
+        </select>
+      </div>
+
+      <!-- Remote Work -->
+      <div class="mb-3">
+        <label for="remotework">Work Mode</label>
+        <select class="form-select" id="remotework" name="remotework" required>
+          <option value="" disabled selected>Select Work Mode</option>
+          <option>Remote</option>
+          <option>In-person</option>
+          <option>Hybrid</option>
+          <option>Flexible</option>
+        </select>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary">Predict Salary</button>
+    </form>
+
+    {% if result %}
+      <div class="result-box">
+        <h3>Predicted Salary: ${{ result }}</h3>
+        <p>Estimated annual salary (in USD)</p>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
