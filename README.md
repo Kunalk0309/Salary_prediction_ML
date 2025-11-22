@@ -42,3 +42,11 @@ The dataset includes the following features, which were used to train the predic
 * **Achieved an $\text{R}^2$ Score of 0.82**, indicating a high degree of variance in salary is explained by the features.
 * **Identified strong correlations** between experience, high-demand skills, and salary.
 * Demonstrated that **data preprocessing and feature engineering** were crucial for achieving the final high accuracy.
+
+
+<img width="1883" height="903" alt="Screenshot 2025-11-22 124628" src="https://github.com/user-attachments/assets/0a6a750b-cf48-473a-8427-550ff5cd8117" />
+
+<img width="1859" height="910" alt="Screenshot 2025-11-22 124916" src="https://github.com/user-attachments/assets/9bf31adc-ae5a-4250-ac73-391cb73a7560" />
+
+
+<img width="1861" height="907" alt="Screenshot 2025-11-22 125006" src="https://github.com/user-attachments/assets/bf4de846-0915-4f9b-9dc5-fb1ffc2a554d" />
